@@ -21,7 +21,11 @@
 #ifndef _OPENFIRESHARED_H_
 #define _OPENFIRESHARED_H_
 
+#include <string>
+#include <unordered_map>
+
 //// GUI BOARD IDENTIFIERS
+
 
 #ifdef ARDUINO_ADAFRUIT_ITSYBITSY_RP2040
 #define OPENFIRE_BOARD "adafruitItsyRP2040"
@@ -41,6 +45,94 @@
 #define OPENFIRE_BOARD "generic"
 #endif // board
 
+class OF_Const
+{
+public:
+    OF_Const();
+
+    static enum {
+        btnUnmapped = -1,
+        btnTrigger = 0,
+        btnGunA,
+        btnGunB,
+        btnGunC,
+        btnStart,
+        btnSelect,
+        btnGunUp,
+        btnGunDown,
+        btnGunLeft,
+        btnGunRight,
+        btnPedal,
+        btnPedal2,
+        btnHome,
+        btnPump,
+        rumblePin,
+        solenoidPin,
+        rumbleSwitch,
+        solenoidSwitch,
+        autofireSwitch,
+        neoPixel,
+        ledR,
+        ledG,
+        ledB,
+        camSDA,
+        camSCL,
+        periphSDA,
+        periphSCL,
+        battery,
+        analogX,
+        analogY,
+        tempPin,
+        boardInputsCount
+    } boardInputs_e;
+
+    static enum {
+        customPins = 0,
+        rumble,
+        solenoid,
+        autofire,
+        simplePause,
+        holdToPause,
+        commonAnode,
+        lowButtonsMode,
+        rumbleFF,
+        boolTypesCount
+    } boolTypes_e;
+
+    static enum {
+        rumbleStrength = 0,
+        rumbleInterval,
+        solenoidNormalInterval,
+        solenoidFastInterval,
+        solenoidHoldLength,
+        autofireWaitFactor,
+        holdToPauseLength,
+        customLEDcount,
+        customLEDstatic,
+        customLEDcolor1,
+        customLEDcolor2,
+        customLEDcolor3,
+        settingsTypesCount
+    } settingsTypes_e;
+
+    static enum {
+        layoutSquare = 0,
+        layoutDiamond
+    } layoutTypes_e;
+
+    typedef struct {
+        int pin[30];
+    } boardMap_t;
+
+    std::unordered_map<const char *, boardMap_t> boardsMap = {
+        {"rpipico", {btnUnmapped,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}},
+        {"rpipicow", {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}}
+    };
+
+#ifdef QT_VERSION_MAJOR
+
+#endif
+};
 
 
 #endif // _OPENFIRESHARED_H_
