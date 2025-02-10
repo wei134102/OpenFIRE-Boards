@@ -26,7 +26,7 @@
 
 // just to detect we're using Qt, and thus building Desktop App and not FW
 #ifdef QT_GUI_LIB
-#include <QMultiHash>
+#include <QMultiMap>
 #endif
 
 //// BOARD IDENTIFIERS (for Desktop App identification and determining presets)
@@ -136,7 +136,7 @@ public:
 
     /// @brief      Map of default pin mappings for each supported board
     /// @details    Key = board, int array maps to RP2040 GPIO where each value is a FW function (or unmapped).
-    inline static const std::unordered_map<const char *, boardMap_t> boardsPresetsMap = {
+    inline static const std::unordered_map<std::string, boardMap_t> boardsPresetsMap = {
         //=====================================================================================================
         // Notes: rpi boards do not expose pins 23-25; pin 29/A3 is used for builtin chipset temp monitor
         {"rpipico",             {btnGunA,       btnGunB,        btnGunC,        btnStart,       btnSelect,
@@ -151,8 +151,8 @@ public:
                                  btnHome,       btnGunUp,       btnGunDown,     btnGunLeft,     btnGunRight,
                                  ledR,          ledG,           ledB,           btnPump,        btnPedal,
                                  btnTrigger,    solenoidPin,    rumblePin,      btnUnmapped,    btnUnmapped,
-                                 camSDA,        camSCL,         btnUnmapped,    btnUnmapped,    btnUnmapped,
-                                 btnUnmapped,   btnUnmapped,    btnUnmapped,    tempPin,        btnUnmapped}},
+                                 camSDA,        camSCL,         btnUnmapped,    unavailable,    unavailable,
+                                 unavailable,   btnUnmapped,    btnUnmapped,    tempPin,        unavailable}},
         //=====================================================================================================
         // Notes: pins 13-17 & 21-23 are unexposed
         {"adafruitItsyRP2040",  {btnUnmapped,   btnUnmapped,    camSDA,         camSCL,         btnPedal,
@@ -229,6 +229,17 @@ public:
         "Temp Sensor"
     };
 
+    inline static const QMap<std::string, const char *> boardNames = {
+        {"rpipico",             "Raspberry Pi Pico (RP2040)"},
+        {"rpipicow",            "Raspberry Pi Pico W (RP2040)"},
+        {"adafruitItsyRP2040",  "Adafruit ItsyBitsy RP2040"},
+        {"adafruitKB2040",      "Adafruit Keeboar KB2040"},
+        {"arduinoNanoRP2040",   "Arduino Nano Connect RP2040"},
+        {"waveshareZero",       "Waveshare Zero RP2040"},
+        // Add more here!
+        {"generic",             "Unknown Board"}
+    };
+
     enum {
         posNothing = 0,
         posLeft = 32,
@@ -244,8 +255,10 @@ public:
     /// @details    Key = board, int array maps to RP2040 GPIO.
     ///             Each pin should be a combination of grid layout slot it should be in,
     ///             added by the grid it should belong to.
-    ///             Unexposed pins should be 0 without any pos offset.
-    inline static const QHash<const char *, boardBoxPosMap_t> boardsBoxPositions = {
+    ///             Unexposed pins should use only posNothing (0).
+    ///             (Yep, bitpacking! Three most significant bits determine left/right/under position)
+    ///             (If anyone is aware of a better way of doing this, please let me know/send a PR!)
+    inline static const QMap<std::string, boardBoxPosMap_t> boardsBoxPositions = {
         //=====================================================================================================
         // Raspberry Pi Pico: 15 pins left, rest of the pins right. Mostly linear order save for the reserved pins.
         // Notes: rpi boards do not expose pins 23-25; pin 29/A3 is used for builtin chipset temp monitor
@@ -267,8 +280,8 @@ public:
         //=====================================================================================================
         // Adafruit ItsyBitsy RP2040: A very cluttered and kind of unfriendly layout tbh :(
         // Notes: pins 13-17 & 21-23 are unexposed
-        {"adafruitItsyRP2040",  {13+posRight,   14+posRight,    12+posRight,    11+posRight,    1+posMiddle,
-                                 2+posMiddle,   9+posRight,     8+posRight,     7+posRight,     6+posRight,
+        {"adafruitItsyRP2040",  {13+posRight,   14+posRight,    12+posRight,    11+posRight,    2+posMiddle,
+                                 1+posMiddle,   9+posRight,     8+posRight,     7+posRight,     6+posRight,
                                  5+posRight,    4+posRight,     14+posLeft,     posNothing,     posNothing,
                                  posNothing,    posNothing,     posNothing,     11+posLeft,     12+posLeft,
                                  13+posLeft,    posNothing,     posNothing,     posNothing,     9+posLeft,
@@ -326,7 +339,7 @@ public:
 
     /// @brief      MultiMap of alternative pin mappings for supported boards to show in the application.
     /// @details    Key = board (one board can be multiple), string literal label, int array maps to RP2040 GPIO where each value is a FW function (or unmapped).
-    inline static const QMultiHash<const char *, boardAltPresetsMap_t> boardsAltPresets = {
+    inline static const QMultiMap<std::string, boardAltPresetsMap_t> boardsAltPresets = {
         //=====================================================================================================
         // Raspberry Pi Pico Presets (currently a test)
         // Notes: rpi boards do not expose pins 23-25; pin 29/A3 is used for builtin chipset temp monitor
