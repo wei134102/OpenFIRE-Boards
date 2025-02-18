@@ -22,6 +22,7 @@
 #define _OPENFIRESHARED_H_
 
 #include <cstdint>
+#include <string>
 #include <unordered_map>
 
 // just to detect we're using Qt, and thus building Desktop App and not FW
