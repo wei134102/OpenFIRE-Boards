@@ -1,8 +1,8 @@
 /*!
-* @file OpenFIREshared.h
+* @file  OpenFIREshared.h
 * @brief Shared board assets.
 *
-* @copyright That One Seong, 2024
+* @copyright That One Seong, 2025
 *
 *  OpenFIREshared is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
