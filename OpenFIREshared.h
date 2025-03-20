@@ -131,6 +131,23 @@ public:
         layoutDiamond
     } layoutTypes_e;
 
+    // For syncing profile objects
+    // (and terminator for other long-running serial transactions)
+    enum {
+        profTopOffset = 0,
+        profBottomOffset,
+        profLeftOffset,
+        profRightOffset,
+        profTLled,
+        profTRled,
+        profIrSens,
+        profRunMode,
+        profIrLayout,
+        profColor,
+        profName = 0xFA,
+        serialTerminator = 0xFF
+    } profSyncTypes_e;
+
     typedef struct {
         int8_t pin[30];
     } boardMap_t;
