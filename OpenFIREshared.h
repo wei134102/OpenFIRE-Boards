@@ -1,6 +1,7 @@
 /*!
 * @file  OpenFIREshared.h
-* @brief Shared board assets.
+* @brief Shared board assets for use between OpenFIRE microcontroller clients
+*        and configuration apps for the OpenFIRE platform.
 *
 * @copyright That One Seong, 2025
 *
@@ -24,11 +25,6 @@
 #include <cstdint>
 #include <string>
 #include <unordered_map>
-
-// just to detect we're using Qt, and thus building Desktop App and not FW
-#ifdef QT_GUI_LIB
-#include <QMultiMap>
-#endif
 
 //// BOARD IDENTIFIERS (for Desktop App identification and determining presets)
 
@@ -209,10 +205,10 @@ public:
     };
 
 // Only needed for the Desktop App, don't build for microcontroller firmware!
-#ifdef QT_VERSION
+#ifdef OF_APP
 
     // Used by pinBoxes, matching boardInputs_e (except "unavailable")
-    inline static const QStringList valuesNameList = {
+    inline static const char* valuesNameList[] = {
         "Unmapped",
         "Trigger",
         "Button A",
@@ -247,7 +243,7 @@ public:
         "Temp Sensor"
     };
 
-    inline static const QMap<std::string, const char *> boardNames = {
+    inline static const std::unordered_map<std::string, const char *> boardNames = {
         {"rpipico",             "Raspberry Pi Pico (RP2040)"},
         {"rpipicow",            "Raspberry Pi Pico W (RP2040)"},
         {"adafruitItsyRP2040",  "Adafruit ItsyBitsy RP2040"},
@@ -276,7 +272,7 @@ public:
     ///             Unexposed pins should use only posNothing (0).
     ///             (Yep, bitpacking! Three most significant bits determine left/right/under position)
     ///             (If anyone is aware of a better way of doing this, please let me know/send a PR!)
-    inline static const QMap<std::string, boardBoxPosMap_t> boardsBoxPositions = {
+    inline static const std::unordered_map<std::string, boardBoxPosMap_t> boardsBoxPositions = {
         //=====================================================================================================
         // Raspberry Pi Pico: 15 pins left, rest of the pins right. Mostly linear order save for the reserved pins.
         // Notes: rpi boards do not expose pins 23-25; pin 29/A3 is used for builtin chipset temp monitor
@@ -357,7 +353,7 @@ public:
 
     /// @brief      MultiMap of alternative pin mappings for supported boards to show in the application.
     /// @details    Key = board (one board can be multiple), string literal label, int array maps to RP2040 GPIO where each value is a FW function (or unmapped).
-    inline static const QMultiMap<std::string, boardAltPresetsMap_t> boardsAltPresets = {
+    inline static const std::unordered_multimap<std::string, boardAltPresetsMap_t> boardsAltPresets = {
         //=====================================================================================================
         // Raspberry Pi Pico Presets (currently a test)
         // Notes: rpi boards do not expose pins 23-25; pin 29/A3 is used for builtin chipset temp monitor
