@@ -237,7 +237,7 @@ public:
         "Camera SCL",
         "Peripherals SDA",
         "Peripherals SCL",
-        "Battery Sensor",
+        "Battery Sensor (Unused)",
         "Analog Pin X",
         "Analog Pin Y",
         "Temp Sensor"
