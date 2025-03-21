@@ -127,8 +127,62 @@ public:
         layoutDiamond
     } layoutTypes_e;
 
-    // For syncing profile objects
-    // (and terminator for other long-running serial transactions)
+    /* ////
+     * Shared serial control/signal codes for both boards and app.
+     * For purposes of app-side debugability: ASCII 33-127 (visible characters)
+     * should be for the board to send, and invisible characters/control codes should
+     * be for the app to send.
+     */////
+    enum {
+        // Docking commands
+        sDock1 = 1,
+        sDock2,
+
+        // Mode toggles from app
+        sIRTest = 5,
+        sCaliProfile,
+        sCaliStart,
+        sCaliSens,
+        sCaliLayout,
+        sSave,
+        sClearFlash,
+        sGotoBootloader,
+
+        // Test signals from app
+        sTestSolenoid = 20,
+        sTestRumble,
+        sTestLEDR,
+        sTestLEDG,
+        sTestLEDB,
+
+        // Button status updates from board
+        sBtnPressed = 33,
+        sBtnReleased,
+        sAnalogPosUpd,
+        sTemperatureUpd,
+
+        // Status updates from board
+        sCaliStageUpd = 48,
+        sCaliInfoUpd,
+        sCurrentProf,
+
+        // Push settings to board
+        sCommitStart = 130,
+        sCommitToggles,
+        sCommitPins,
+        sCommitSettings,
+        sCommitProfile,
+
+        // Grab settings from board
+        sGetPins = 150,
+        sGetToggles,
+        sGetSettings,
+        sGetProfile,
+
+        // Terminates out of any current mode, or undocks
+        serialTerminator = 0xFF
+    } serialCmdTypes_e;
+
     enum {
         profTopOffset = 0,
         profBottomOffset,
@@ -141,7 +195,6 @@ public:
         profIrLayout,
         profColor,
         profName = 0xFA,
-        serialTerminator = 0xFF
     } profSyncTypes_e;
 
     typedef struct {
