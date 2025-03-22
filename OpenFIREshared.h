@@ -155,15 +155,14 @@ public:
         sTestLEDG,
         sTestLEDB,
 
-        // Button status updates from board
+        // Status updates from board
         sBtnPressed = 33,
         sBtnReleased,
         sAnalogPosUpd,
         sTemperatureUpd,
-
-        // Status updates from board
-        sCaliStageUpd = 48,
+        sCaliStageUpd,
         sCaliInfoUpd,
+        sTestCoords,
         sCurrentProf,
 
         // Push settings to board
