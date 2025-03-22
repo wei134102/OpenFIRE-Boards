@@ -164,6 +164,7 @@ public:
         sCaliInfoUpd,
         sTestCoords,
         sCurrentProf,
+        sError,
 
         // Push settings to board
         sCommitStart = 130,
