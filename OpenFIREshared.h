@@ -146,7 +146,6 @@ public:
         sCaliLayout,
         sSave,
         sClearFlash,
-        sGotoBootloader,
 
         // Test signals from app
         sTestSolenoid = 20,
