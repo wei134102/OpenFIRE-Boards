@@ -144,8 +144,6 @@ public:
         sCaliStart,
         sCaliSens,
         sCaliLayout,
-        sSave,
-        sClearFlash,
 
         // Test signals from app
         sTestSolenoid = 20,
@@ -179,6 +177,8 @@ public:
         sGetSettings,
         sGetProfile,
 
+        sSave = 0xFD,
+        sClearFlash = 0xFE,
         // Terminates out of any current mode, or undocks
         serialTerminator = 0xFF
     } serialCmdTypes_e;
