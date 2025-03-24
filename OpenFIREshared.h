@@ -171,6 +171,7 @@ public:
         sCommitPins,
         sCommitSettings,
         sCommitProfile,
+        sCommitID,
 
         // Grab settings from board
         sGetPins = 150,
@@ -189,12 +190,20 @@ public:
         profRightOffset,
         profTLled,
         profTRled,
+        profAdjX,
+        profAdjY,
         profIrSens,
         profRunMode,
         profIrLayout,
         profColor,
+        profDataTypes,
         profName = 0xFA,
     } profSyncTypes_e;
+
+    enum {
+        usbPID = 0,
+        usbName,
+    } usbIdSyncTypes_e;
 
     typedef struct {
         int8_t pin[30];
