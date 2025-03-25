@@ -299,8 +299,8 @@ public:
         "Peripherals SDA",
         "Peripherals SCL",
         "Battery Sensor (Unused)",
-        "Analog Pin X",
-        "Analog Pin Y",
+        "Analog Stick X",
+        "Analog Stick Y",
         "Temp Sensor"
     };
 
