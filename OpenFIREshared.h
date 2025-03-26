@@ -183,12 +183,14 @@ public:
         sCommitSettings,
         sCommitProfile,
         sCommitID,
+        sCommitPeriphs,
 
         // Grab settings from board
         sGetPins = 150,
         sGetToggles,
         sGetSettings,
         sGetProfile,
+        sGetPeriphs,
 
         sSave = 0xFD,
         sClearFlash = 0xFE,
