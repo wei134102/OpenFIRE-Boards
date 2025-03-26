@@ -87,6 +87,7 @@ public:
         analogX,
         analogY,
         tempPin,
+        // Add here
         boardInputsCount
     } boardInputs_e;
 
@@ -101,6 +102,7 @@ public:
         commonAnode,
         lowButtonsMode,
         rumbleFF,
+        // Add here
         boolTypesCount
     } boolTypes_e;
 
@@ -118,14 +120,24 @@ public:
         customLEDcolor1,
         customLEDcolor2,
         customLEDcolor3,
+        // Add here
         settingsTypesCount
     } settingsTypes_e;
 
     // Layout types
     enum {
         layoutSquare = 0,
-        layoutDiamond
+        layoutDiamond,
+        // Add here
+        layoutTypes
     } layoutTypes_e;
+
+    // Peripheral types
+    enum {
+        i2cOLED = 0,
+        // Add here
+        i2cDevicesCount
+    } i2cPeriphTypes_e;
 
     /* ////
      * Shared serial control/signal codes for both boards and app.
