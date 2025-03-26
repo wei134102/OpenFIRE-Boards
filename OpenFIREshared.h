@@ -136,7 +136,8 @@ public:
     enum {
         i2cOLED = 0,
         // Add here
-        i2cDevicesCount
+        i2cDevicesCount,
+        i2cDevicesEnabled = 0xFE
     } i2cPeriphTypes_e;
 
     /* ////
