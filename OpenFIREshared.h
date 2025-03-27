@@ -176,6 +176,10 @@ public:
         sCurrentProf,
         sError,
 
+        // Error types from board (with sError)
+        sErrCam = 100,
+        sErrPeriphGeneric,
+
         // Push settings to board
         sCommitStart = 130,
         sCommitToggles,
