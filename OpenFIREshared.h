@@ -137,7 +137,7 @@ public:
         i2cOLED = 0,
         // Add here
         i2cDevicesCount,
-        i2cDevicesEnabled = 0xFE,
+        i2cDevicesEnabled = 0xFA,
 
         //// setting types for devices
         // For OLED:
@@ -201,10 +201,10 @@ public:
         sGetProfile,
         sGetPeriphs,
 
-        sSave = 0xFD,
-        sClearFlash = 0xFE,
+        sSave = 0xFC,
+        sClearFlash = 0xFD,
         // Terminates out of any current mode, or undocks
-        serialTerminator = 0xFF
+        serialTerminator = 0xFE
     } serialCmdTypes_e;
 
     enum {
