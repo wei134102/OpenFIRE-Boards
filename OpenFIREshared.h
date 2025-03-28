@@ -137,7 +137,12 @@ public:
         i2cOLED = 0,
         // Add here
         i2cDevicesCount,
-        i2cDevicesEnabled = 0xFE
+        i2cDevicesEnabled = 0xFE,
+
+        //// setting types for devices
+        // For OLED:
+        oledAltAddr = 0,
+        oledSettingsTypes,
     } i2cPeriphTypes_e;
 
     /* ////
