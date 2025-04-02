@@ -103,6 +103,7 @@ public:
         commonAnode,
         lowButtonsMode,
         rumbleFF,
+        invertStaticPixels,
         // Add here
         boolTypesCount
     } boolTypes_e;
