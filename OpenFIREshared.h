@@ -240,7 +240,7 @@ public:
         {"rpipico",             {   btnGunA,       btnGunB,        btnGunC,        btnStart,       btnSelect,
                                     btnHome,       btnGunUp,       btnGunDown,     btnGunLeft,     btnGunRight,
                                     ledR,          ledG,           ledB,           btnPump,        btnPedal,
-                                    btnTrigger,    solenoidPin,    rumblePin,      btnUnmapped,    btnUnmapped,
+                                    btnTrigger,    solenoidPin,    rumblePin,      periphSDA,      periphSCL,
                                     camSDA,        camSCL,         btnUnmapped,    unavailable,    unavailable,
                                     unavailable,   btnUnmapped,    btnUnmapped,    tempPin,        unavailable}},
         //=====================================================================================================
@@ -248,7 +248,7 @@ public:
         {"rpipicow",            {   btnGunA,       btnGunB,        btnGunC,        btnStart,       btnSelect,
                                     btnHome,       btnGunUp,       btnGunDown,     btnGunLeft,     btnGunRight,
                                     ledR,          ledG,           ledB,           btnPump,        btnPedal,
-                                    btnTrigger,    solenoidPin,    rumblePin,      btnUnmapped,    btnUnmapped,
+                                    btnTrigger,    solenoidPin,    rumblePin,      periphSDA,      periphSCL,
                                     camSDA,        camSCL,         btnUnmapped,    unavailable,    unavailable,
                                     unavailable,   btnUnmapped,    btnUnmapped,    tempPin,        unavailable}},
         //=====================================================================================================
