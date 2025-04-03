@@ -88,6 +88,7 @@ public:
         analogX,
         analogY,
         tempPin,
+        wiiClockGen,
         // Add here
         boardInputsCount
     } boardInputs_e;
@@ -323,7 +324,8 @@ public:
         "Battery Sensor (Unused)",
         "Analog Stick X",
         "Analog Stick Y",
-        "Temp Sensor"
+        "Temp Sensor",
+        "Wii Cam Clock",
     };
 
     inline static const std::unordered_map<std::string, const char *> boardNames = {
