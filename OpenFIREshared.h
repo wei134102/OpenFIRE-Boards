@@ -123,6 +123,8 @@ public:
         customLEDcolor1,
         customLEDcolor2,
         customLEDcolor3,
+        tempWarning,
+        tempShutdown,
         // Add here
         settingsTypesCount
     } settingsTypes_e;
