@@ -152,9 +152,10 @@ public:
 
     /* ////
      * Shared serial control/signal codes for both boards and app.
-     * For purposes of app-side debugability: ASCII 33-127 (visible characters)
-     * should be for the board to send, and invisible characters/control codes should
-     * be for the app to send.
+     * For purposes of app-side debugability: ASCII 128+ should be for the board to send,
+     * and invisible ASCII characters/control codes 0-32 should be for the app to send.
+     *
+     * ASCII 33-127 should be avoided whenever possible.
      */////
     enum {
         // Docking commands
@@ -169,14 +170,18 @@ public:
         sCaliLayout,
 
         // Test signals from app
-        sTestSolenoid = 20,
+        sTestSolenoid = 15,
         sTestRumble,
         sTestLEDR,
         sTestLEDG,
         sTestLEDB,
 
+        // Error types from board (with sError)
+        sErrCam = 0x80, // 128
+        sErrPeriphGeneric,
+
         // Status updates from board
-        sBtnPressed = 33,
+        sBtnPressed = 0x90, // 144
         sBtnReleased,
         sAnalogPosUpd,
         sTemperatureUpd,
@@ -184,14 +189,9 @@ public:
         sCaliInfoUpd,
         sTestCoords,
         sCurrentProf,
-        sError,
-
-        // Error types from board (with sError)
-        sErrCam = 100,
-        sErrPeriphGeneric,
 
         // Push settings to board
-        sCommitStart = 130,
+        sCommitStart = 0xAA, // 170
         sCommitToggles,
         sCommitPins,
         sCommitSettings,
@@ -200,16 +200,17 @@ public:
         sCommitPeriphs,
 
         // Grab settings from board
-        sGetPins = 150,
+        sGetPins = 0xC8, // 200
         sGetToggles,
         sGetSettings,
         sGetProfile,
         sGetPeriphs,
 
-        sSave = 0xFC,
-        sClearFlash = 0xFD,
+        sError = 0xFA, // 250
+        sSave = 0xFC, // 252
+        sClearFlash = 0xFD, // 253
         // Terminates out of any current mode, or undocks
-        serialTerminator = 0xFE
+        serialTerminator = 0xFE // 254
     } serialCmdTypes_e;
 
     enum {
