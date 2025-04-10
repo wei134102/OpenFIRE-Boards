@@ -113,10 +113,9 @@ public:
     enum {
         rumbleStrength = 0,
         rumbleInterval,
-        solenoidNormalInterval,
-        solenoidFastInterval,
+        solenoidOnLength,
+        solenoidOffLength,
         solenoidHoldLength,
-        autofireWaitFactor,
         holdToPauseLength,
         customLEDcount,
         customLEDstatic,
