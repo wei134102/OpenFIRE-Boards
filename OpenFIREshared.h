@@ -26,6 +26,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <utility>
 
 //// BOARD IDENTIFIERS (for Desktop App identification and determining presets)
 
@@ -204,6 +205,8 @@ public:
         {"TempShutdownLevel",   tempShutdown        },
     };
 
+    // Profile data indices
+    // this should match the order of ProfileData_s in (FW)OpenFIREprefs
     enum {
         profTopOffset = 0,
         profBottomOffset,
@@ -219,8 +222,11 @@ public:
         profColor,
         profDataTypes,
         profName = 0xFA,
+        profCurrent = 0xFD,
     } profSyncTypes_e;
 
+
+    // NOTE: Strings shouldn't be longer than fifteen characters
     const std::unordered_map<std::string, int> profSettingTypes_Strings = {
         {"TopOffset",       profTopOffset       },
         {"BottomOffset",    profBottomOffset    },
@@ -235,6 +241,7 @@ public:
         {"IrLayoutType",    profIrLayout        },
         {"ProfColor",       profColor           },
         {"ProfileName",     profName            },
+        {"CurrentProf",     profCurrent         },
     };
 
     // Layout types
@@ -258,11 +265,13 @@ public:
         oledSettingsTypes,
     } i2cPeriphTypes_e;
 
-    const std::unordered_map<std::string, int> i2cPeriphTypes_Strings = {
+    const std::unordered_map<std::string, int> i2cDevicesTypes_Strings = {
         // Master "devices types" array and device types
         {"DevicesEnabled",  i2cDevicesEnabled   },
         {"DeviceOLED",      i2cOLED             },
-        // OLED settings
+    };
+
+    const std::unordered_map<std::string, int> i2cOledTypes_Strings = {
         {"OLEDAltAddr",     oledAltAddr         },
     };
 
