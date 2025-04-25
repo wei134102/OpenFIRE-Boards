@@ -51,10 +51,8 @@
 class OF_Const
 {
 public:
-    // !!! These orders should remain the same to maintain backwards compatibility!!!
-    // Any new slots should explicitly be added at the bottom above the "count" line
-
-    // Inputs
+    // Any new slots should ideally be added at the bottom, above the "count" line
+    // Inputs Map indices
     enum {
         unavailable = -2,
         btnUnmapped = -1,
@@ -135,13 +133,13 @@ public:
 
     // Constructor
     OF_Const() {
-#ifdef OF_APP // generate strings list for the available
+#ifdef OF_APP // generate strings list for the available board inputs
         for(auto &func : boardInputs_Strings)
             boardInputs_sortedStr[func->second+1] = func->first.c_str();
 #endif // OF_APP
     }
 
-    // Boolean/toggle settings
+    // Boolean/toggle settings indices
     enum {
         customPins = 0,
         rumble,
@@ -159,18 +157,18 @@ public:
 
     const std::unordered_map<std::string, int> boolTypes_Strings = {
         {"CustomPins",          customPins          },
-        {"RumbleEnabled",       rumble              },
-        {"SolenoidEnabled",     solenoid            },
-        {"AutofireEnabled",     autofire            },
-        {"SimplePauseMenu",     simplePause         },
+        {"Rumble",              rumble              },
+        {"Solenoid",            solenoid            },
+        {"Autofire",            autofire            },
+        {"SimplePause",         simplePause         },
         {"HoldToPause",         holdToPause         },
-        {"LEDCommonAnode",      commonAnode         },
-        {"LowButtonsMode",      lowButtonsMode      },
-        {"RumbleForceFeedback", rumbleFF            },
+        {"LEDAnode",            commonAnode         },
+        {"LowButtons",          lowButtonsMode      },
+        {"RumbFFB",             rumbleFF            },
         {"InvertStaticPixels",  invertStaticPixels  },
     };
 
-    // Variable settings
+    // Variable settings indices
     enum {
         rumbleStrength = 0,
         rumbleInterval,
@@ -190,23 +188,24 @@ public:
     } settingsTypes_e;
 
     const std::unordered_map<std::string, int> settingsTypes_Strings = {
-        {"RumblePower",         rumbleStrength      },
-        {"RumbleLength",        rumbleInterval      },
-        {"SolenoidOnTime",      solenoidOnLength    },
-        {"SolenoidOffTime",     solenoidOffLength   },
-        {"SolenoidHoldLength",  solenoidHoldLength  },
+        {"RumbPwr",             rumbleStrength      },
+        {"RumbTime",            rumbleInterval      },
+        {"SolOn",               solenoidOnLength    },
+        {"SolOff",              solenoidOffLength   },
+        {"SolHold",             solenoidHoldLength  },
         {"HoldToPauseLength",   holdToPauseLength   },
-        {"CustomPixelsCount",   customLEDcount      },
-        {"StaticPixelsCount",   customLEDstatic     },
-        {"StaticPixelColor1",   customLEDcolor1     },
-        {"StaticPixelColor2",   customLEDcolor2     },
-        {"StaticPixelColor3",   customLEDcolor3     },
-        {"TempWarningLevel",    tempWarning         },
-        {"TempShutdownLevel",   tempShutdown        },
+        {"CtmPixelsCount",      customLEDcount      },
+        {"StaticPixels",        customLEDstatic     },
+        {"StaticColor1",        customLEDcolor1     },
+        {"StaticColor2",        customLEDcolor2     },
+        {"StaticColor3",        customLEDcolor3     },
+        {"TempWarning",         tempWarning         },
+        {"TempDanger",          tempShutdown        },
     };
 
-    // Profile data indices
-    // this should match the order of ProfileData_s in (FW)OpenFIREprefs
+    // Profile data type indices
+    // this MUST match the order of ProfileData_s in (FW)OpenFIREprefs
+    // as ProfData is accessed by struct offset.
     enum {
         profTopOffset = 0,
         profBottomOffset,
@@ -225,26 +224,24 @@ public:
         profCurrent = 0xFD,
     } profSyncTypes_e;
 
-
-    // NOTE: Strings shouldn't be longer than fifteen characters
     const std::unordered_map<std::string, int> profSettingTypes_Strings = {
-        {"TopOffset",       profTopOffset       },
-        {"BottomOffset",    profBottomOffset    },
-        {"LeftOffset",      profLeftOffset      },
-        {"RightOffset",     profRightOffset     },
-        {"TopLeftLed",      profTLled           },
-        {"TopRightLed",     profTRled           },
-        {"AdjX",            profAdjX            },
-        {"AdjY",            profAdjY            },
-        {"IrSensitivity",   profIrSens          },
-        {"AveragingMode",   profRunMode         },
-        {"IrLayoutType",    profIrLayout        },
-        {"ProfColor",       profColor           },
-        {"ProfileName",     profName            },
-        {"CurrentProf",     profCurrent         },
+        {"TopOffset",   profTopOffset       },
+        {"BtmOffset",   profBottomOffset    },
+        {"LftOffset",   profLeftOffset      },
+        {"RhtOffset",   profRightOffset     },
+        {"TLeftled",    profTLled           },
+        {"TRightLed",   profTRled           },
+        {"AdjX",        profAdjX            },
+        {"AdjY",        profAdjY            },
+        {"IrSens",      profIrSens          },
+        {"IrRunMode",   profRunMode         },
+        {"IrLayout",    profIrLayout        },
+        {"Color",       profColor           },
+        {"Name",        profName            },
+        {"CurrentProf", profCurrent         },
     };
 
-    // Layout types
+    // Layout types indices
     enum {
         layoutSquare = 0,
         layoutDiamond,
@@ -252,10 +249,11 @@ public:
         layoutTypes
     } layoutTypes_e;
 
-    // Peripheral types
+    // Peripheral types indices (both periph types and settings)
     enum {
+        // Devices
         i2cOLED = 0,
-        // Add here
+        // Add devices here
         i2cDevicesCount,
         i2cDevicesEnabled = 0xFA,
 
