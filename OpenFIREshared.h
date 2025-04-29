@@ -108,7 +108,7 @@ public:
         {"Pedal",               btnPedal        },
         {"Alt Pedal",           btnPedal2       },
         {"Pump Action",         btnPump         },
-        {"Home Button",         btnTrigger      },
+        {"Home Button",         btnHome         },
         {"Rumble Signal",       rumblePin       },
         {"Solenoid Signal",     solenoidPin     },
         {"Rumble Switch",       rumbleSwitch    },
