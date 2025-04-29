@@ -135,7 +135,7 @@ public:
     OF_Const() {
 #ifdef OF_APP // generate strings list for the available board inputs
         for(auto &func : boardInputs_Strings)
-            boardInputs_sortedStr[func->second+1] = func->first.c_str();
+            boardInputs_sortedStr[func.second+1] = (char*)func.first.c_str();
 #endif // OF_APP
     }
 
