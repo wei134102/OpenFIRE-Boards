@@ -151,6 +151,8 @@ public:
         lowButtonsMode,
         rumbleFF,
         invertStaticPixels,
+        i2cOLED,
+        i2cOLEDaltAddr,
         // Add here
         boolTypesCount
     } boolTypes_e;
@@ -166,6 +168,8 @@ public:
         {"LowButtons",          lowButtonsMode      },
         {"RumbFFB",             rumbleFF            },
         {"InvertStaticPixels",  invertStaticPixels  },
+        {"I2COLEDEnabled",      i2cOLED             },
+        {"I2COLEDAltAddr",      i2cOLEDaltAddr      },
     };
 
     // Variable settings indices
@@ -249,30 +253,6 @@ public:
         layoutTypes
     } layoutTypes_e;
 
-    // Peripheral types indices (both periph types and settings)
-    enum {
-        // Devices
-        i2cOLED = 0,
-        // Add devices here
-        i2cDevicesCount,
-        i2cDevicesEnabled = 0xFA,
-
-        //// setting types for devices
-        // For OLED:
-        oledAltAddr = 0,
-        oledSettingsTypes,
-    } i2cPeriphTypes_e;
-
-    const std::unordered_map<std::string, int> i2cDevicesTypes_Strings = {
-        // Master "devices types" array and device types
-        {"DevicesEnabled",  i2cDevicesEnabled   },
-        {"DeviceOLED",      i2cOLED             },
-    };
-
-    const std::unordered_map<std::string, int> i2cOledTypes_Strings = {
-        {"OLEDAltAddr",     oledAltAddr         },
-    };
-
     /* ////
      * Shared serial control/signal codes for both boards and app.
      * For purposes of app-side debugability: ASCII 128+ should be for the board to send,
@@ -320,14 +300,12 @@ public:
         sCommitSettings,
         sCommitProfile,
         sCommitID,
-        sCommitPeriphs,
 
         // Grab settings from board
         sGetPins = 0xC8, // 200
         sGetToggles,
         sGetSettings,
         sGetProfile,
-        sGetPeriphs,
 
         sError = 0xFA, // 250
         sSave = 0xFC, // 252
