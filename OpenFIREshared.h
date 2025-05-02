@@ -22,11 +22,9 @@
 #ifndef _OPENFIRESHARED_H_
 #define _OPENFIRESHARED_H_
 
-#include <cstdint>
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <utility>
 
 //// BOARD IDENTIFIERS (for Desktop App identification and determining presets)
 
