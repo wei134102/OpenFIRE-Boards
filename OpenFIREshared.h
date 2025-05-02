@@ -223,8 +223,8 @@ public:
         profRunMode,
         profIrLayout,
         profColor,
+        profName,
         profDataTypes,
-        profName = 0xFA,
         profCurrent = 0xFD,
     } profSyncTypes_e;
 
