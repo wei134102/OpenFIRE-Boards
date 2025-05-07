@@ -209,6 +209,12 @@ public:
         {"AnalogMode",          analogMode          },
     };
 
+    enum {
+        analogModeStick = 0,
+        analogModeDpad,
+        analogModeKeys
+    } analogModeSettings_e;
+
     // Profile data type indices
     // this MUST match the order of ProfileData_s in (FW)OpenFIREprefs
     // as ProfData is accessed by struct offset.
