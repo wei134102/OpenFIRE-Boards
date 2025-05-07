@@ -23,6 +23,7 @@
 #define _OPENFIRESHARED_H_
 
 #include <string>
+#include <map>
 #include <unordered_map>
 #include <vector>
 
@@ -49,7 +50,7 @@
 class OF_Const
 {
 public:
-    // Any new slots should ideally be added at the bottom, above the "count" line
+    // Any new non-btn slots should ideally be added at the bottom, above the "count" line
     // Inputs Map indices
     enum {
         unavailable = -2,
@@ -68,6 +69,7 @@ public:
         btnPedal2,
         btnPump,
         btnHome,
+        // ^ btn inputs
         rumblePin,
         solenoidPin,
         rumbleSwitch,
@@ -85,7 +87,7 @@ public:
         analogY,
         tempPin,
         wiiClockGen,
-        // Add here
+        // Add non-button inputs here
         boardInputsCount
     } boardInputs_e;
 
@@ -185,6 +187,7 @@ public:
         customLEDcolor3,
         tempWarning,
         tempShutdown,
+        analogMode,
         // Add here
         settingsTypesCount
     } settingsTypes_e;
@@ -203,6 +206,7 @@ public:
         {"StaticColor3",        customLEDcolor3     },
         {"TempWarning",         tempWarning         },
         {"TempDanger",          tempShutdown        },
+        {"AnalogMode",          analogMode          },
     };
 
     // Profile data type indices
@@ -376,7 +380,7 @@ public:
 // Only needed for the Desktop App, don't build for microcontroller firmware!
 #ifdef OF_APP
 
-    const std::unordered_map<std::string, const char *> boardNames = {
+    const std::map<std::string, const char *> boardNames = {
         {"rpipico",             "Raspberry Pi Pico (RP2040)"},
         {"rpipicow",            "Raspberry Pi Pico W (RP2040)"},
         {"adafruitItsyRP2040",  "Adafruit ItsyBitsy RP2040"},
