@@ -307,6 +307,7 @@ public:
         sCommitPins,
         sCommitSettings,
         sCommitProfile,
+        sCommitBtns,
         sCommitID,
 
         // Grab settings from board
@@ -314,6 +315,7 @@ public:
         sGetToggles,
         sGetSettings,
         sGetProfile,
+        sGetBtns,
 
         sError = 0xFA, // 250
         sSave = 0xFC, // 252
