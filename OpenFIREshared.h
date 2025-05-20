@@ -442,17 +442,95 @@ public:
 #ifdef OF_APP
 
     const std::map<std::string, const char *> boardNames = {
-        {"rpipico",             "Raspberry Pi Pico (RP2040)"},
-        {"rpipicow",            "Raspberry Pi Pico W (RP2040)"},
-        {"adafruitItsyRP2040",  "Adafruit ItsyBitsy RP2040"},
-        {"adafruitKB2040",      "Adafruit Keeboar KB2040"},
-        {"arduinoNanoRP2040",   "Arduino Nano Connect RP2040"},
-        {"waveshareZero",       "Waveshare Zero RP2040"},
-        {"esp32-s3-devkitc-1",      "Esp32-S3 Wroom-1 Devkitc-1 N16R8"},
-        {"waveshare-esp32-s3-pico", "Waveshare Esp32-S3-pico"},
+        {"rpipico",                 "Raspberry Pi Pico (RP2040)"},
+        {"rpipicow",                "Raspberry Pi Pico W (RP2040)"},
+        {"adafruitItsyRP2040",      "Adafruit ItsyBitsy RP2040"},
+        {"adafruitKB2040",          "Adafruit Keeboar KB2040"},
+        {"arduinoNanoRP2040",       "Arduino Nano Connect RP2040"},
+        {"waveshareZero",           "Waveshare Zero RP2040"},
+        {"esp32-s3-devkitc-1",      "ESP32-S3 WROOM-1 DevkitC-1 (N16R8)"},
+        {"waveshare-esp32-s3-pico", "Waveshare ESP32-S3-Pico"},
         // Add more here!
         {"generic",             "Unknown RP2040 Board"}
     };
+
+    /// @brief      Types of board architectures
+    /// @details    Board archs are to be dictated by the application on a per-board basis,
+    ///             to be used for defining which pins are capable of what.
+    const char* boardArchs[2] = {
+        "rp2040_235X",
+        "esp32"
+    };
+
+    /// @brief      Indices for the boardArchs strings above
+    enum {
+        boardRP,
+        boardESP32
+    } boardArchs_e;
+
+    /// @brief      Indices to be used as a bitmap for defining pin capabilities
+    /// @note       Default (0) assumes the pin is digital only with no I2C or SPI capability
+    enum {
+        pinDigital = 0,          // macro for no special function at all
+        pinHasADC  = 0b00000001, // whether pin is connected to an ADC or not
+        pinI2C0SDA = 0b00000010, // pin has I2C0 SDA
+        pinI2C0SCL = 0b00000110, // pin has I2C0 SCL
+        pinI2C1SDA = 0b00001010, // pin has I2C1 SDA
+        pinI2C1SCL = 0b00001110, // pin has I2C1 SCL
+        pinSPI0RX  = 0b00100000, // pin has SPI0 RX
+        pinSPI0TX  = 0b01000000, // pin has SPI0 TX
+        pinSPI0SCK = 0b01100000, // pin has SPI0 SCK
+        pinSPI0CSn = 0b10000000, // pin has SPI0 CSn
+        pinSPI1RX  = 0b00110000, // pin has SPI1 RX
+        pinSPI1TX  = 0b01010000, // pin has SPI1 TX
+        pinSPI1SCK = 0b01110000, // pin has SPI1 SCK
+        pinSPI1CSn = 0b10010000, // pin has SPI1 CSn
+        // to be used in Application
+        pinCanSPI  = 0b11110000,
+        pinCanI2C  = 1 << 1,
+        // check if I2C1, else I2C0
+        pinIsI2C1 = 1 << 3,
+        // check if SCL, else SDA
+        pinIsI2CSCL = 3 << 2
+    } pinCapabilities_e;
+
+    /// @brief      Map of capabilities of each pin for a board type
+    /// @details    Dictates what types of functions a pin can be mapped to, based on its capabilities
+    ///             This applies to ALL boards using a specific architecture.
+    const std::unordered_map<std::string, std::vector<int>> mcuCapableMaps = {
+        //====================================================
+        // Base Microcontroller: RP2040 & RP235X(A|B)
+        // Because RP235X-series shares the lower 30 GPIO, both RPI MCUs can share the same map
+        {boardArchs[boardRP],   {/*00*/ pinI2C0SDA | pinSPI0RX,                     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI0RX,
+                               /*05*/ pinI2C0SCL | pinSPI0CSn,                    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
+                               /*10*/ pinI2C1SDA | pinSPI1SCK,                    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
+                               /*15*/ pinI2C1SCL | pinSPI1TX,                     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                               /*20*/ pinI2C0SDA | pinSPI0RX,                     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,
+                               /*25*/ pinI2C0SCL | pinSPI1CSn,                    pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX  | pinHasADC,    pinI2C0SDA | pinSPI1RX | pinHasADC,     pinI2C0SCL | pinSPI1CSn | pinHasADC,
+                               /*30*/ pinI2C1SDA | pinSPI1SCK,                    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,
+                               /*35*/ pinI2C1SCL | pinSPI0TX,                     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                               /*40*/ pinI2C0SDA | pinSPI1RX  | pinHasADC,        pinI2C0SCL | pinSPI1CSn | pinHasADC,    pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinI2C0SDA | pinSPI1RX  | pinHasADC,
+                               /*45*/ pinI2C0SCL | pinSPI1CSn | pinHasADC,        pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX  | pinHasADC                                                                                      }},
+        //====================================================
+        // Base Microcontroller: ESP32
+        // *To be filled out by someone that knows how this board works
+
+        //====================================================
+        // Board Overrides: Raspberry Pi Pico (Non-/W)
+        // Some pins that should have I2C or SPI functions apparently aren't allowed on rpipico(w)?
+        {"rpipico",             {/*00*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI0RX,
+                     /*05*/ pinI2C0SCL | pinSPI0CSn,    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
+                     /*10*/ pinI2C1SDA | pinSPI1SCK,    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
+                     /*15*/ pinI2C1SCL | pinSPI1TX,     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                     /*20*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinDigital,                             pinDigital,                             pinDigital,
+                     /*25*/ pinDigital,                 pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinSPI1RX  | pinHasADC,                 pinDigital                  }},
+        {"rpipicow",            {/*00*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI0RX,
+                      /*05*/ pinI2C0SCL | pinSPI0CSn,    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
+                      /*10*/ pinI2C1SDA | pinSPI1SCK,    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
+                      /*15*/ pinI2C1SCL | pinSPI1TX,     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                      /*20*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinDigital,                             pinDigital,                             pinDigital,
+                      /*25*/ pinDigital,                 pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinSPI1RX  | pinHasADC,                 pinDigital                  }},
+        };
 
     enum {
         posNothing  = 0,
