@@ -486,12 +486,12 @@ public:
         pinSPI1SCK = 0b01110000, // pin has SPI1 SCK
         pinSPI1CSn = 0b10010000, // pin has SPI1 CSn
         // to be used in Application
-        pinCanSPI  = 0b11110000,
-        pinCanI2C  = 1 << 1,
-        // check if I2C1, else I2C0
-        pinIsI2C1 = 1 << 3,
+        pinCanSPI   = 0b11110000,
+        pinCanI2C   = 1 << 1,
         // check if SCL, else SDA
-        pinIsI2CSCL = 3 << 2
+        pinIsI2CSCL = 1 << 2,
+        // check if I2C1, else I2C0
+        pinIsI2C1   = 1 << 3
     } pinCapabilities_e;
 
     /// @brief      Map of capabilities of each pin for a board type
