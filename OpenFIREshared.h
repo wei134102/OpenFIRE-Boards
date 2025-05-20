@@ -502,15 +502,15 @@ public:
         // Base Microcontroller: RP2040 & RP235X(A|B)
         // Because RP235X-series shares the lower 30 GPIO, both RPI MCUs can share the same map
         {boardArchs[boardRP],   {/*00*/ pinI2C0SDA | pinSPI0RX,                     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI0RX,
-                               /*05*/ pinI2C0SCL | pinSPI0CSn,                    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
-                               /*10*/ pinI2C1SDA | pinSPI1SCK,                    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
-                               /*15*/ pinI2C1SCL | pinSPI1TX,                     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
-                               /*20*/ pinI2C0SDA | pinSPI0RX,                     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,
-                               /*25*/ pinI2C0SCL | pinSPI1CSn,                    pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX  | pinHasADC,    pinI2C0SDA | pinSPI1RX | pinHasADC,     pinI2C0SCL | pinSPI1CSn | pinHasADC,
-                               /*30*/ pinI2C1SDA | pinSPI1SCK,                    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,
-                               /*35*/ pinI2C1SCL | pinSPI0TX,                     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
-                               /*40*/ pinI2C0SDA | pinSPI1RX  | pinHasADC,        pinI2C0SCL | pinSPI1CSn | pinHasADC,    pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinI2C0SDA | pinSPI1RX  | pinHasADC,
-                               /*45*/ pinI2C0SCL | pinSPI1CSn | pinHasADC,        pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX  | pinHasADC                                                                                      }},
+                                 /*05*/ pinI2C0SCL | pinSPI0CSn,                    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
+                                 /*10*/ pinI2C1SDA | pinSPI1SCK,                    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
+                                 /*15*/ pinI2C1SCL | pinSPI1TX,                     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                                 /*20*/ pinI2C0SDA | pinSPI0RX,                     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,
+                                 /*25*/ pinI2C0SCL | pinSPI1CSn,                    pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX  | pinHasADC,    pinI2C0SDA | pinSPI1RX | pinHasADC,     pinI2C0SCL | pinSPI1CSn | pinHasADC,
+                                 /*30*/ pinI2C1SDA | pinSPI1SCK,                    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,
+                                 /*35*/ pinI2C1SCL | pinSPI0TX,                     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                                 /*40*/ pinI2C0SDA | pinSPI1RX  | pinHasADC,        pinI2C0SCL | pinSPI1CSn | pinHasADC,    pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinI2C0SDA | pinSPI1RX  | pinHasADC,
+                                 /*45*/ pinI2C0SCL | pinSPI1CSn | pinHasADC,        pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX  | pinHasADC                                                                                      }},
         //====================================================
         // Base Microcontroller: ESP32
         // *To be filled out by someone that knows how this board works
@@ -519,17 +519,17 @@ public:
         // Board Overrides: Raspberry Pi Pico (Non-/W)
         // Some pins that should have I2C or SPI functions apparently aren't allowed on rpipico(w)?
         {"rpipico",             {/*00*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI0RX,
-                     /*05*/ pinI2C0SCL | pinSPI0CSn,    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
-                     /*10*/ pinI2C1SDA | pinSPI1SCK,    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
-                     /*15*/ pinI2C1SCL | pinSPI1TX,     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
-                     /*20*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinDigital,                             pinDigital,                             pinDigital,
-                     /*25*/ pinDigital,                 pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinSPI1RX  | pinHasADC,                 pinDigital                  }},
+                                 /*05*/ pinI2C0SCL | pinSPI0CSn,    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
+                                 /*10*/ pinI2C1SDA | pinSPI1SCK,    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
+                                 /*15*/ pinI2C1SCL | pinSPI1TX,     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                                 /*20*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinDigital,                             pinDigital,                             pinDigital,
+                                 /*25*/ pinDigital,                 pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinSPI1RX  | pinHasADC,                 pinDigital                  }},
         {"rpipicow",            {/*00*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI0RX,
-                      /*05*/ pinI2C0SCL | pinSPI0CSn,    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
-                      /*10*/ pinI2C1SDA | pinSPI1SCK,    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
-                      /*15*/ pinI2C1SCL | pinSPI1TX,     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
-                      /*20*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinDigital,                             pinDigital,                             pinDigital,
-                      /*25*/ pinDigital,                 pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinSPI1RX  | pinHasADC,                 pinDigital                  }},
+                                 /*05*/ pinI2C0SCL | pinSPI0CSn,    pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,
+                                 /*10*/ pinI2C1SDA | pinSPI1SCK,    pinI2C1SCL | pinSPI1TX,                 pinI2C0SDA | pinSPI1RX,                 pinI2C0SCL | pinSPI1CSn,                pinI2C1SDA | pinSPI1SCK,
+                                 /*15*/ pinI2C1SCL | pinSPI1TX,     pinI2C0SDA | pinSPI0RX,                 pinI2C0SCL | pinSPI0CSn,                pinI2C1SDA | pinSPI0SCK,                pinI2C1SCL | pinSPI0TX,
+                                 /*20*/ pinI2C0SDA | pinSPI0RX,     pinI2C0SCL | pinSPI0CSn,                pinDigital,                             pinDigital,                             pinDigital,
+                                 /*25*/ pinDigital,                 pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX | pinHasADC,     pinSPI1RX  | pinHasADC,                 pinDigital                  }},
         };
 
     enum {
