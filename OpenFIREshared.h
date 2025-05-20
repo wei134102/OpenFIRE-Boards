@@ -491,7 +491,9 @@ public:
         // check if SCL, else SDA
         pinIsI2CSCL = 1 << 2,
         // check if I2C1, else I2C0
-        pinIsI2C1   = 1 << 3
+        pinIsI2C1   = 1 << 3,
+        // check if SPI1, else SPI0
+        pinIsSPI1   = 1 << 4
     } pinCapabilities_e;
 
     /// @brief      Map of capabilities of each pin for a board type
