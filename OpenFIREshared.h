@@ -646,10 +646,10 @@ public:
                                      /*30*/   posNothing,     posNothing,     posNothing,     posNothing,     posNothing,
                                      /*35*/ 10 | posLeft,   11 | posLeft,   12 | posLeft,   13 | posLeft,   14 | posLeft,
                                      /*40*/ 15 | posLeft,   16 | posLeft,   17 | posLeft,     posNothing,     posNothing,
-                                     /*45*/ 8  | posLeft,     posNothing,   6  | posLeft,   7  | posLeft,     posNothing    }},
+                                     /*45*/ 8  | posLeft,     posNothing,   6  | posLeft,   7  | posLeft                    }},
         //=====================================================================================================================
         // Waveshare ESP32 S3 Pico
-        // Notes: ESP32-S3
+        // Board Type: ESP32-S3
         {"waveshare-esp32-s3-pico", {/*00*/   posNothing,   17 | posRight,  16 | posRight,    posNothing,   15 | posRight,
                                      /*05*/ 14 | posRight,  12 | posRight,  10 | posRight,  9  | posRight,  7  | posRight,
                                      /*10*/ 6  | posRight,  1  | posLeft,   2  | posLeft,   4  | posLeft,   5  | posLeft,
@@ -659,7 +659,7 @@ public:
                                      /*30*/   posNothing,     posNothing,     posNothing,   11 | posLeft,   12 | posLeft,
                                      /*35*/ 14 | posLeft,   15 | posLeft,   16 | posLeft,   17 | posLeft,   19 | posLeft,
                                      /*40*/ 20 | posLeft,   19 | posRight,  20 | posRight,    posNothing,     posNothing,
-                                     /*45*/   posNothing,     posNothing,     posNothing,     posNothing,     posNothing    }},
+                                     /*45*/   posNothing,     posNothing,     posNothing,     posNothing                    }},
         //=====================================================================================================================
         // Insert new layouts below this one!
         // Feel free to use any of the above as a template.
