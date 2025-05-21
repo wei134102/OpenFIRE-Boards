@@ -515,8 +515,17 @@ public:
                                  /*45*/ pinI2C0SCL | pinSPI1CSn | pinHasADC,        pinI2C1SDA | pinSPI1SCK | pinHasADC,    pinI2C1SCL | pinSPI1TX  | pinHasADC                                                                                      }},
         //====================================================
         // Base Microcontroller: ESP32
-        // *To be filled out by someone that knows how this board works
-
+        // esp32s3 has two ADC, ADC1 (10 channels (GPIO1 – GPIO10)) e ADC2 (10 channels (GPIO11 – GPIO20)). ADC2 has some handicaps because it is also used by the Wi-Fi module
+        {boardArchs[boardESP32],{/*00*/ pinDigital,                                 pinHasADC | pinI2C0SDA | pinI2C1SDA,    pinHasADC | pinI2C0SCL | pinI2C1SCL,    pinHasADC,                              pinHasADC | pinI2C0SDA | pinI2C1SDA,
+                                 /*05*/ pinHasADC | pinI2C0SCL | pinI2C1SCL,        pinHasADC,                              pinHasADC,                              pinHasADC | pinI2C0SDA | pinI2C1SDA,    pinHasADC | pinI2C0SCL | pinI2C1SCL,
+                                 /*10*/ pinHasADC | pinSPI0CSn | pinSPI1CSn,        pinSPI0TX | pinSPI1TX,                  pinSPI0SCK | pinSPI1SCK,                pinSPI0RX | pinSPI1RX,                  pinDigital,
+                                 /*15*/ pinI2C0SCL | pinI2C1SCL,                    pinDigital,                             pinDigital,                             pinI2C0SDA | pinI2C1SDA,                pinDigital,
+                                 /*20*/ pinDigital,                                 pinDigital,                             pinDigital,                             pinDigital,                             pinDigital,
+                                 /*25*/ pinDigital,                                 pinDigital,                             pinDigital,                             pinDigital,                             pinDigital,
+                                 /*30*/ pinDigital,                                 pinDigital,                             pinDigital,                             pinDigital,                             pinDigital,
+                                 /*35*/ pinI2C0SDA | pinI2C1SDA,                    pinI2C0SCL | pinI2C1SCL,                pinDigital,                             pinDigital,                             pinDigital,
+                                 /*40*/ pinDigital,                                 pinDigital,                             pinDigital,                             pinDigital,                             pinDigital,
+                                 /*45*/ pinDigital,                                 pinDigital,                             pinDigital,                             pinDigital,                             pinDigital                              }},
         //====================================================
         // Board Overrides: Raspberry Pi Pico (Non-/W)
         // Some pins that should have I2C or SPI functions apparently aren't allowed on rpipico(w)?
