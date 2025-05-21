@@ -424,7 +424,7 @@ public:
                                      /*30*/ unavailable,    unavailable,    unavailable,    unavailable,    unavailable,
                                      /*35*/ btnHome,        btnGunA,        btnGunB,        btnSelect,      btnStart,
                                      /*40*/ btnGunUp,       btnGunDown,     btnGunLeft,     unavailable,    unavailable,
-                                     /*45*/ btnPump,        unavailable,    btnPedal,       neoPixel,       unavailable     }},
+                                     /*45*/ btnPump,        unavailable,    btnPedal,       neoPixel                        }},
         //=====================================================================================================================
         // Waveshare ESP32 S3 Pico
         // Board Type: ESP32
@@ -437,7 +437,7 @@ public:
                                      /*30*/ unavailable,    unavailable,    unavailable,    btnGunLeft,     btnGunRight,
                                      /*35*/ periphSDA,      periphSCL,      btnUnmapped,    btnPump,        btnPedal,
                                      /*40*/ btnTrigger,     rumblePin,      solenoidPin,    unavailable,    unavailable,
-                                     /*45*/ unavailable,    unavailable,    unavailable,    unavailable,    unavailable     }},
+                                     /*45*/ unavailable,    unavailable,    unavailable,    unavailable                     }},
         //=====================================================================================================================
     };
 
