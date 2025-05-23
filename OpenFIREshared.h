@@ -51,7 +51,9 @@
     #define OPENFIRE_BOARD "esp32-s3-devkitc-1"
 #elifdef ARDUINO_WAVESHARE_ESP32_S3_PICO
     #define OPENFIRE_BOARD "waveshare-esp32-s3-pico"
-#else // there's really no good way of "defining" a generic RP2350 board vs RP2040, so default to 2040
+#elifdef ARDUINO_GENERIC_RP2350
+    #define OPENFIRE_BOARD "generic-rp2350"
+#else
     #define OPENFIRE_BOARD "generic"
 #endif // board
 
@@ -481,6 +483,7 @@ public:
         {"esp32-s3-devkitc-1",      "ESP32-S3 WROOM-1 DevkitC-1 (N16R8)"},
         {"waveshare-esp32-s3-pico", "Waveshare ESP32-S3-Pico"},
         // Add more here!
+        {"generic-rp2350",          "Unknown RP2350 Board"},
         {"generic",                 "Unknown RP2040 Board"}
     };
 
@@ -726,7 +729,7 @@ public:
 
 
         //=====================================================================================================================
-        // Generic (RP2040) layout
+        // Generic (RP2040/2350) layout
         // Just reveal all pins; user assumes full responsibility if something goes wrong here
         {"generic",                 {/*00*/ 1  | posLeft,   2  | posLeft,   3  | posLeft,   4  | posLeft,   5  | posLeft,
                                      /*00*/ 6  | posLeft,   7  | posLeft,   8  | posLeft,   9  | posLeft,   10 | posLeft,
