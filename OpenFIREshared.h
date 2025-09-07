@@ -163,6 +163,8 @@ public:
         invertStaticPixels,
         i2cOLED,
         i2cOLEDaltAddr,
+        analogOutput,    // wei134102 add新增：保存Gamepad模式状态
+        misterMode,      // wei134102 add 新增：保存MiSTer优化模式状态        
         // Add here
         boolTypesCount
     } boolTypes_e;
@@ -180,6 +182,8 @@ public:
         {"InvertStaticPixels",  invertStaticPixels  },
         {"I2COLEDEnabled",      i2cOLED             },
         {"I2COLEDAltAddr",      i2cOLEDaltAddr      },
+        {"AnalogOutput",        analogOutput        },  // wei134102 add 新增
+        {"MisterMode",          misterMode          },  // wei134102 add 新增        
     };
 
     // Variable settings indices
