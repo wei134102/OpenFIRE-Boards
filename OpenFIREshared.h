@@ -163,8 +163,8 @@ public:
         invertStaticPixels,
         i2cOLED,
         i2cOLEDaltAddr,
-        analogOutput,    // wei134102 add新增：保存Gamepad模式状态
-        misterMode,      // wei134102 add 新增：保存MiSTer优化模式状态        
+        analogOutputMode,    // Add for saving GUN input mode
+        misterMode,          // Add for saving MiSTer optimized mode 
         // Add here
         boolTypesCount
     } boolTypes_e;
@@ -182,8 +182,8 @@ public:
         {"InvertStaticPixels",  invertStaticPixels  },
         {"I2COLEDEnabled",      i2cOLED             },
         {"I2COLEDAltAddr",      i2cOLEDaltAddr      },
-        {"AnalogOutput",        analogOutput        },  // wei134102 add 新增
-        {"MisterMode",          misterMode          },  // wei134102 add 新增        
+        {"AnalogOutputMode",    analogOutputMode    },
+        {"MisterMode",          misterMode          },     
     };
 
     // Variable settings indices
@@ -450,14 +450,14 @@ public:
         // Board Type: ESP32
         {"esp32-s3-devkitc-1",      {/*00*/ unavailable,    btnTrigger,     btnGunRight,    btnUnmapped,    analogX,
                                      /*05*/ analogY,        tempPin,        btnUnmapped,    camSDA,         camSCL,
-                                     /*10*/ btnUnmapped,    btnUnmapped,    btnUnmapped,    btnUnmapped,    btnUnmapped,
+                                     /*10*/ ledR,           ledG,           ledB,           btnUnmapped,    btnUnmapped,
                                      /*15*/ periphSCL,      rumblePin,      solenoidPin,    periphSDA,      unavailable,
                                      /*20*/ unavailable,    btnGunC,        unavailable,    unavailable,    unavailable,
                                      /*25*/ unavailable,    unavailable,    unavailable,    unavailable,    unavailable,
                                      /*30*/ unavailable,    unavailable,    unavailable,    unavailable,    unavailable,
                                      /*35*/ btnHome,        btnGunA,        btnGunB,        btnSelect,      btnStart,
                                      /*40*/ btnGunUp,       btnGunDown,     btnGunLeft,     unavailable,    unavailable,
-                                     /*45*/ btnPump,        unavailable,    btnPedal,       neoPixel                        }},
+                                     /*45*/ btnPump,        unavailable,    btnPedal,       btnUnmapped                     }},
         //=====================================================================================================================
         // Waveshare ESP32 S3 Pico
         // Board Type: ESP32
@@ -714,7 +714,7 @@ public:
         // Board Type: ESP32-S3
         {"esp32-s3-devkitc-1",      {/*00*/   posNothing,   19 | posLeft,   18 | posLeft,     posNothing,   19 | posRight,
                                      /*05*/ 18 | posRight,  17 | posRight,    posNothing,   11 | posRight,  8  | posRight,
-                                     /*10*/   posNothing,     posNothing,     posNothing,     posNothing,     posNothing,
+                                     /*10*/ 7  | posRight,  6  | posRight,  5  | posRight,     posNothing,     posNothing,
                                      /*15*/ 15 | posRight,  14 | posRight,  13 | posRight,  12 | posRight,    posNothing,
                                      /*20*/   posNothing,   5  | posLeft,     posNothing,     posNothing,     posNothing,
                                      /*25*/   posNothing,     posNothing,     posNothing,     posNothing,     posNothing,
